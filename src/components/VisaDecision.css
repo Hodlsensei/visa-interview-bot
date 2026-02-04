@@ -1,0 +1,159 @@
+.visa-decision-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.decision-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 600px;
+  width: 100%;
+  overflow: hidden;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decision-status {
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.status-icon {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 20px;
+  animation: scaleIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.status-text {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.decision-details {
+  padding: 30px;
+}
+
+.score-section {
+  margin-bottom: 30px;
+}
+
+.score-section h3 {
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.score-bar {
+  height: 30px;
+  background: #e5e7eb;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.score-fill {
+  height: 100%;
+  transition: width 1s ease-out;
+}
+
+.score-value {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.reason-section,
+.red-flags-section,
+.positives-section,
+.next-steps-section {
+  margin-bottom: 25px;
+}
+
+.reason-section h3,
+.red-flags-section h3,
+.positives-section h3,
+.next-steps-section h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.red-flags-section ul,
+.positives-section ul,
+.next-steps-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.red-flags-section li {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  border-left: 4px solid #ef4444;
+}
+
+.positives-section li {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  border-left: 4px solid #22c55e;
+}
+
+.next-steps-section li {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  border-left: 4px solid #f59e0b;
+}
+
+.retry-button {
+  width: calc(100% - 60px);
+  margin: 0 30px 30px;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.retry-button:hover {
+  transform: scale(1.02);
+}
