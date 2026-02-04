@@ -11,7 +11,7 @@
     "frontend": "vite",
     "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run backend\" \"npm run frontend\"",
     "start": "node server.js",
-    "build": "vite build",
+    "build": "npm install --force && vite build",
     "preview": "vite preview"
   },
   "keywords": [
