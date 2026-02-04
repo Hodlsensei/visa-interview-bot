@@ -1,6 +1,7 @@
 const express = require('express');
 const { generateDocumentContext } = require('./enhanced-document-analyzer');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 
 app.use(cors());
@@ -10,7 +11,8 @@ app.use(express.json());
 const USE_GROQ = true;
 
 // API Keys - REPLACE THESE WITH YOUR ACTUAL KEYS
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY ||'';
+// ✅ Deta Space automatically provides process.env variables
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 
 const SYSTEM_PROMPT = `You are a professional consular officer conducting a visa interview at an embassy. You must be DIRECT, EFFICIENT, and AUTHORITATIVE like a real officer.
@@ -577,23 +579,28 @@ app.get('/api/health', (req, res) => {
     status: 'OK', 
     message: 'Server is running',
     usingGroq: USE_GROQ,
-    apiConfigured: true
+    apiConfigured: true,
+    platform: 'Deta Space compatible'
   });
 });
 
-const PORT = process.env.PORT || 8000;
-
-// Serve static files from React build (PRODUCTION ONLY)
+// ========== SERVE STATIC FILES IN PRODUCTION ==========
+// This MUST come after all API routes
 if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
+  // Serve static files from the dist folder
   app.use(express.static(path.join(__dirname, 'dist')));
   
-  // Serve React app for all non-API routes
+  // Handle React routing - return index.html for all non-API routes
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
 }
 
+// ✅ CRITICAL: Use PORT from environment (Deta provides this automatically)
+// Falls back to 8000 for local development
+const PORT = process.env.PORT || 8000;
+
+// ✅ Listen on all interfaces (0.0.0.0) - required for Deta Space
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📡 API endpoint: /api/chat`);
@@ -601,6 +608,7 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`❤️  Health check: /api/health`);
   console.log(`🤖 Using: ${USE_GROQ ? 'Groq (Llama 3.3 70B)' : 'Gemini (2.5 Flash)'}`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`☁️  Platform: Deta Space compatible`);
   console.log('✅ ULTRA-REALISTIC consular officer system loaded');
   console.log('⚡ Direct, efficient, authoritative - handles ALL client behaviors');
   console.log('🎯 Maximum 2 sentences, commanding tone, quick decisions');
